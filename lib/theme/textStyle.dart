@@ -14,7 +14,7 @@ class UITextStyle {
     textStyle: const TextStyle(color: UIColor.black, fontSize: 16, fontWeight: FontWeight.bold),
   );
   static TextStyle button_select_accentWhite_16_bold = GoogleFonts.openSans(
-    textStyle: const TextStyle(color: UIColor.accentWhile, fontSize: 16, fontWeight: FontWeight.bold),
+    textStyle: const TextStyle(color: UIColor.accentWhite, fontSize: 16, fontWeight: FontWeight.bold),
   );
   static TextStyle function_clock_black_15_normal = GoogleFonts.openSans(
     textStyle: const TextStyle(color: UIColor.black, fontSize: 15, fontWeight: FontWeight.normal),

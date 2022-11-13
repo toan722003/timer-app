@@ -7,7 +7,7 @@ class UIColor {
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
   static const Color btOnOff = Color(0xFFF4F5F6);
-  static Color btNonSelected = Color(0xFF000000).withOpacity(0.58);
+  static Color btNonSelected = const Color(0xFF000000).withOpacity(0.58);
   static const Color accentGreen = Color(0xFF31DC43);
   static const Color accentRed = Color(0xFFF06674);
   static const Color linear = Color(0xFF3690EA);
@@ -23,7 +23,7 @@ class UIColor {
   static const Color noteColor2 = Color(0xFF36B7FF);
   static const Color noteColor3 = Color(0xFF36FFF3);
   static const Color noteColor4 = Color(0xFFBF36FF);
-  static const Color accentWhile = Color(0xFFC5C7C9);
+  static const Color accentWhite = Color(0xFFC5C7C9);
   static const Color accentGrey = Color(0xFF4E5964);
   static const Color accnetWhite = Color(0xFFD9D9D9);
 }

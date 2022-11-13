@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:timer_app/bindings/clock_binding.dart';
+import 'package:timer_app/bindings/home_menu_binding.dart';
+import 'package:timer_app/bindings/note_binding.dart';
+import 'package:timer_app/bindings/setting_binding.dart';
+import 'package:timer_app/bindings/task_binding.dart';
 import 'package:timer_app/theme/color.dart';
+import 'package:timer_app/widget/clock/clock_home.dart';
+import 'package:timer_app/widget/home_menu.dart';
+import 'package:timer_app/widget/note/note_home.dart';
+import 'package:timer_app/widget/setting/setting.dart';
+import 'package:timer_app/widget/splashscreen.dart';
+import 'package:timer_app/widget/task/task_home.dart';
 
 Future main() async {
-  await initialization();
   runApp(const MyApp());
-}
-
-Future initialization() async {
-  splashScreen();
-  await Future.delayed(const Duration(seconds: 2));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,49 +26,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         backgroundColor: UIColor.white,
       ),
-      home: MyHomePage(),
+      home: SplashScreen(),
+      getPages: [
+        GetPage(name: "/clockhome", page: () => ClockHomeWidget(), binding: ClockBinding()),
+        GetPage(name: "/taskhome", page: () => TaskHomeWidget(), binding: TaskBinding()),
+        GetPage(name: "/homemenu", page: () => HomeMenuWidget(), binding: HomeMenuBinding()),
+        GetPage(name: "/notehome", page: () => NoteHomeWidget(), binding: NoteBinding()),
+        GetPage(name: "/setting", page: () => SettingWidget(), binding: SettingBinDing()),
+      ],
     );
   }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Container(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-      ),
-    );
-  }
-}
-
-Widget splashScreen() {
-  return Stack(
-    children: [
-      Image.asset(
-        "resources/images/splashscreen.png",
-        width: Get.width,
-        height: Get.height,
-      ),
-      Positioned(
-          top: 500,
-          left: 200,
-          child: Container(
-            color: UIColor.white,
-            width: 100,
-            height: 100,
-          )),
-    ],
-  );
 }
