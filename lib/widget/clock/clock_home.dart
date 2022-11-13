@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:timer_app/controller/clock_controller.dart';
 import 'package:timer_app/theme/color.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timer_app/theme/textStyle.dart';
+import 'package:timer_app/widget/clock/add_clock.dart';
 
 class ClockHomeWidget extends StatefulWidget {
   const ClockHomeWidget({Key? key}) : super(key: key);
@@ -32,15 +31,16 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               margin: EdgeInsets.only(top: 15, bottom: 15),
               decoration: const BoxDecoration(
-                  color: UIColor.btOnOff,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 4),
-                      blurRadius: 4,
-                      spreadRadius: 0,
-                    )
-                  ]),
+                color: UIColor.btOnOff,
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                // boxShadow: [
+                //   BoxShadow(
+                //     offset: Offset(0, 4),
+                //     blurRadius: 4,
+                //     spreadRadius: 0,
+                //   )
+                // ]
+              ),
               child: Column(
                 children: [
                   Row(
@@ -51,9 +51,19 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                           style: UITextStyle.item_clock_black_40_bold,
                         ),
                       ),
-                      InkWell(
-                        child: Image.asset("resources/images/hand_point_right.png",width: 50,height: 50,),
-                        onTap: () {},
+                      Container(
+                        width: 30,
+                        height: 30,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("resources/images/hand_point_right.png")),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            print("next screen is edit clock");
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -85,12 +95,17 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
       floatingActionButton: Container(
         width: 70,
         height: 70,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: UIColor.green,
-        ),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: UIColor.accentWhite,
+            border: Border.all(style: BorderStyle.solid, color: UIColor.black, width: 2),
+            image: const DecorationImage(
+              image: AssetImage("resources/images/images.png"),
+            )),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed("/homemenu/addclock");
+          },
         ),
       ),
     );

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:timer_app/bindings/add_clock_binding.dart';
 import 'package:timer_app/bindings/clock_binding.dart';
 import 'package:timer_app/bindings/home_menu_binding.dart';
 import 'package:timer_app/bindings/note_binding.dart';
 import 'package:timer_app/bindings/setting_binding.dart';
 import 'package:timer_app/bindings/task_binding.dart';
 import 'package:timer_app/theme/color.dart';
+import 'package:timer_app/widget/clock/add_clock.dart';
 import 'package:timer_app/widget/clock/clock_home.dart';
 import 'package:timer_app/widget/home_menu.dart';
 import 'package:timer_app/widget/note/note_home.dart';
@@ -33,6 +35,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/homemenu", page: () => HomeMenuWidget(), binding: HomeMenuBinding()),
         GetPage(name: "/notehome", page: () => NoteHomeWidget(), binding: NoteBinding()),
         GetPage(name: "/setting", page: () => SettingWidget(), binding: SettingBinDing()),
+        GetPage(
+            name: "/homemenu/addclock", page: () => AddClockWidget(), binding: AddClockBinding()),
       ],
     );
   }
