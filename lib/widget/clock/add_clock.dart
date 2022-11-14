@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:timer_app/controller/add_clock_controller.dart';
 import 'package:timer_app/theme/color.dart';
 import 'package:timer_app/theme/textStyle.dart';
+import 'package:timer_app/widget/clock/futureAddClock.dart';
 
 class AddClockWidget extends StatefulWidget {
   const AddClockWidget({Key? key}) : super(key: key);
@@ -23,7 +24,9 @@ class _AddClockWidgetState extends State<AddClockWidget> {
   }
 
   @override
-  Widget build(BuildContext context,) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -51,7 +54,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             height: 35.h,
-            margin: EdgeInsets.only(left: 20.w, top: 8.h, bottom: 8.h),
+            margin: EdgeInsets.only(right: 20.w, top: 8.h, bottom: 8.h),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               color: UIColor.accentGreen,
@@ -62,7 +65,8 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                 "Done",
                 // style:
                 //     UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20, color: UIColor.white),
-                style: UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20.sp,color: UIColor.white),
+                style: UITextStyle.cancel_black_24_normal
+                    .copyWith(fontSize: 20.sp, color: UIColor.white),
               ),
             ),
           ),
@@ -74,13 +78,19 @@ class _AddClockWidgetState extends State<AddClockWidget> {
         child: Column(
           children: [
             Container(
+              margin: EdgeInsets.symmetric(vertical: 10.h),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: UIColor.accentGreen, style: BorderStyle.solid, width: 3),
+              ),
               child: TimePickerSpinner(
                 alignment: Alignment.center,
                 is24HourMode: true,
-                normalTextStyle: TextStyle(fontSize: 24.sp, color: UIColor.black),
-                highlightedTextStyle: TextStyle(fontSize: 24.sp, color: UIColor.black),
-                spacing: 50.w,
-                itemHeight: 80.h,
+                normalTextStyle: TextStyle(fontSize: 20.sp, color: UIColor.black),
+                highlightedTextStyle: TextStyle(fontSize: 20.sp, color: UIColor.black),
+                spacing: 40.w,
+                itemHeight: 50.h,
                 isForce2Digits: true,
                 // onTimeChange: (time) {
                 //   setState(() {
@@ -88,6 +98,54 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                 //   });
                 // },
               ),
+            ),
+            Container(
+              height: 40.h,
+              child: ListView.separated(
+                itemCount: 7,
+                itemBuilder: (context, index) {
+                  return Container(
+                    alignment: Alignment.center,
+                    width: 35.w,
+                    height: 35.h,
+                    decoration: const BoxDecoration(
+                      color: UIColor.accentWhite,
+                      shape: BoxShape.circle,
+                    ),
+                    child: InkWell(
+                      child: Text(
+                        index == 6 ? "CN" : "T${index + 2}",
+                        style: UITextStyle.day_white_13_bold,
+                      ),
+                    ),
+                  );
+                },
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    width: 8.w,
+                  );
+                },
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FutureAddClock(imageIcon: "resources/images/rung.png", nameFuture: "Rung"),
+                InkResponse(),
+              ],
+            ),
+            SizedBox(
+              height: 40.h,
+            ),
+            Row(
+              children: [],
+            ),
+            SizedBox(
+              height: 40.h,
+            ),
+            Row(
+              children: [],
             ),
           ],
         ),
