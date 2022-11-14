@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/bindings/add_clock_binding.dart';
 import 'package:timer_app/bindings/clock_binding.dart';
@@ -24,20 +25,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(
-        backgroundColor: UIColor.white,
-      ),
-      home: SplashScreen(),
-      getPages: [
-        GetPage(name: "/clockhome", page: () => ClockHomeWidget(), binding: ClockBinding()),
-        GetPage(name: "/taskhome", page: () => TaskHomeWidget(), binding: TaskBinding()),
-        GetPage(name: "/homemenu", page: () => HomeMenuWidget(), binding: HomeMenuBinding()),
-        GetPage(name: "/notehome", page: () => NoteHomeWidget(), binding: NoteBinding()),
-        GetPage(name: "/setting", page: () => SettingWidget(), binding: SettingBinDing()),
-        GetPage(
-            name: "/homemenu/addclock", page: () => AddClockWidget(), binding: AddClockBinding()),
-      ],
+    return ScreenUtilInit(
+      // BoxConstraints(
+      //     maxWidth: MediaQuery.of(context).size.width,
+      //     maxHeight: MediaQuery.of(context).size.height),
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          theme: ThemeData(
+            backgroundColor: UIColor.white,
+          ),
+          home: SplashScreen(),
+          getPages: [
+            GetPage(name: "/clockhome", page: () => ClockHomeWidget(), binding: ClockBinding()),
+            GetPage(name: "/taskhome", page: () => TaskHomeWidget(), binding: TaskBinding()),
+            GetPage(name: "/homemenu", page: () => HomeMenuWidget(), binding: HomeMenuBinding()),
+            GetPage(name: "/notehome", page: () => NoteHomeWidget(), binding: NoteBinding()),
+            GetPage(name: "/setting", page: () => SettingWidget(), binding: SettingBinDing()),
+            GetPage(name: "/homemenu/addclock", page: () => AddClockWidget(), binding: AddClockBinding()),
+          ],
+        );
+      },
     );
   }
 }

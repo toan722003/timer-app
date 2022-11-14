@@ -22,15 +22,15 @@ class _AddClockWidgetState extends State<AddClockWidget> {
     super.initState();
   }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 130,
+        leadingWidth: 130.w,
         backgroundColor: UIColor.white,
         leading: Container(
           alignment: Alignment.center,
-          margin: EdgeInsets.only(left: 20, top: 8, bottom: 8),
+          margin: EdgeInsets.only(left: 20.w, top: 8.h, bottom: 8.h),
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: UIColor.accentRed,
@@ -38,7 +38,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
           child: InkWell(
             child: Text(
               "Cancel",
-              style: UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20),
+              style: UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20.sp),
             ),
             onTap: () {
               Get.back();
@@ -48,9 +48,9 @@ class _AddClockWidgetState extends State<AddClockWidget> {
         actions: [
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
             height: 35.h,
-            margin: EdgeInsets.only(right: 20, top: 8, bottom: 8),
+            margin: EdgeInsets.only(left: 20.w, top: 8.h, bottom: 8.h),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               color: UIColor.accentGreen,
@@ -60,7 +60,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
               },
               child: Text(
                 "Done",
-                style: UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20,color: UIColor.white),
+                style: UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20.sp,color: UIColor.white),
               ),
             ),
           ),
