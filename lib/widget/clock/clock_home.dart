@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/clock_controller.dart';
 import 'package:timer_app/theme/color.dart';
@@ -21,15 +22,15 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
     return Scaffold(
       body: Container(
         height: Get.height,
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         color: UIColor.white,
         child: ListView.builder(
           itemCount: 10,
           itemBuilder: (context, index) {
             return Container(
-              height: 110,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              margin: EdgeInsets.only(top: 15, bottom: 15),
+              height: 110.h,
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              margin: EdgeInsets.only(top: 15.h, bottom: 15.h),
               decoration: const BoxDecoration(
                 color: UIColor.btOnOff,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -52,8 +53,8 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                         ),
                       ),
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: 30.w,
+                        height: 30.h,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage("resources/images/hand_point_right.png")),
@@ -93,8 +94,8 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
         ),
       ),
       floatingActionButton: Container(
-        width: 70,
-        height: 70,
+        width: 70.w,
+        height: 70.h,
         decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: UIColor.accentWhite,
