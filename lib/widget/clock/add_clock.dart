@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/add_clock_controller.dart';
 import 'package:timer_app/theme/color.dart';
@@ -14,13 +15,13 @@ class AddClockWidget extends StatefulWidget {
 }
 
 class _AddClockWidgetState extends State<AddClockWidget> {
-
   AddClockController addClockController = Get.find();
 
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,17 +57,40 @@ class _AddClockWidgetState extends State<AddClockWidget> {
               color: UIColor.accentGreen,
             ),
             child: InkWell(
-              onTap: () {
-              },
+              onTap: () {},
               child: Text(
                 "Done",
-                style: UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20,color: UIColor.white),
+                style:
+                    UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20, color: UIColor.white),
               ),
             ),
           ),
         ],
       ),
-      body: Container(),
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20.w),
+        color: UIColor.white,
+        child: Column(
+          children: [
+            Container(
+              child: TimePickerSpinner(
+                alignment: Alignment.center,
+                is24HourMode: true,
+                normalTextStyle: TextStyle(fontSize: 24.sp, color: UIColor.black),
+                highlightedTextStyle: TextStyle(fontSize: 24.sp, color: UIColor.black),
+                spacing: 50.w,
+                itemHeight: 80.h,
+                isForce2Digits: true,
+                // onTimeChange: (time) {
+                //   setState(() {
+                //     _dateTime = time;
+                //   });
+                // },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
