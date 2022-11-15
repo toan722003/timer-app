@@ -28,6 +28,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
     BuildContext context,
   ) {
     return Scaffold(
+      backgroundColor: UIColor.white,
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 130.w,
@@ -60,7 +61,9 @@ class _AddClockWidgetState extends State<AddClockWidget> {
               color: UIColor.accentGreen,
             ),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                print("Tao bao thuc thanh cong");
+              },
               child: Text(
                 "Done",
                 // style:
@@ -99,7 +102,11 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                 // },
               ),
             ),
+            SizedBox(
+              height: 25.h,
+            ),
             Container(
+              margin: EdgeInsets.only(left: 2.w),
               height: 40.h,
               child: ListView.separated(
                 itemCount: 7,
@@ -117,35 +124,86 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                         index == 6 ? "CN" : "T${index + 2}",
                         style: UITextStyle.day_white_13_bold,
                       ),
+                      onTap: (){
+                        print("T$index");
+                      },
                     ),
                   );
                 },
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(
-                    width: 8.w,
+                    width: 12.w,
                   );
                 },
               ),
             ),
+            SizedBox(
+              height: 25.h,
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FutureAddClock(imageIcon: "resources/images/rung.png", nameFuture: "Rung"),
-                InkResponse(),
+                InkResponse(
+                  onTap: () {
+                    print("Rung");
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: UIColor.accentWhite,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: UIColor.black, style: BorderStyle.solid),
+                    ),
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
               ],
             ),
             SizedBox(
-              height: 40.h,
+              height: 25.h,
             ),
             Row(
-              children: [],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                FutureAddClock(
+                    imageIcon: "resources/images/calender.png", nameFuture: "Hen bao thuc"),
+                InkResponse(
+                  onTap: () {
+                    print("Hen bao thuc");
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: UIColor.accentWhite,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: UIColor.black, style: BorderStyle.solid),
+                        image: const DecorationImage(
+                          image: AssetImage("resources/images/images.png"),
+                        )),
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
+              ],
             ),
             SizedBox(
-              height: 40.h,
+              height: 25.h,
             ),
-            Row(
-              children: [],
+            InkResponse(
+              focusColor: UIColor.accentGreen,
+              hoverColor: UIColor.accentGreen,
+              highlightColor: UIColor.accentGreen,
+              onTap: () {
+                print("Nhac chuong");
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FutureAddClock(
+                      imageIcon: "resources/images/chuong.png", nameFuture: "Nhac Chuong"),
+                ],
+              ),
             ),
           ],
         ),

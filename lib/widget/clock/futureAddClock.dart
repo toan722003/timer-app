@@ -17,8 +17,7 @@ class FutureAddClock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100.w,
-      margin: EdgeInsets.only(left: 5.w),
+      width: 200.w,
       child: Row(
         children: [
           Container(
