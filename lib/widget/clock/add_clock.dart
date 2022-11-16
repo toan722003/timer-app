@@ -7,6 +7,7 @@ import 'package:timer_app/controller/add_clock_controller.dart';
 import 'package:timer_app/theme/color.dart';
 import 'package:timer_app/theme/textStyle.dart';
 import 'package:timer_app/widget/clock/futureAddClock.dart';
+import 'package:timer_app/widget/clock/table_calender.dart';
 
 class AddClockWidget extends StatefulWidget {
   const AddClockWidget({Key? key}) : super(key: key);
@@ -124,7 +125,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                         index == 6 ? "CN" : "T${index + 2}",
                         style: UITextStyle.day_white_13_bold,
                       ),
-                      onTap: (){
+                      onTap: () {
                         print("T$index");
                       },
                     ),
@@ -171,7 +172,14 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                     imageIcon: "resources/images/calender.png", nameFuture: "Hen bao thuc"),
                 InkResponse(
                   onTap: () {
-                    print("Hen bao thuc");
+                    showModalBottomSheet(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                        ),
+                        context: context,
+                        backgroundColor: UIColor.white,
+                        builder: (context) => TableCalender());
                   },
                   child: Container(
                     decoration: BoxDecoration(

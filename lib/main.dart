@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_file.dart';
 import 'package:timer_app/bindings/add_clock_binding.dart';
 import 'package:timer_app/bindings/clock_binding.dart';
 import 'package:timer_app/bindings/home_menu_binding.dart';
@@ -17,7 +18,8 @@ import 'package:timer_app/widget/splashscreen.dart';
 import 'package:timer_app/widget/task/task_home.dart';
 
 Future main() async {
-  runApp(const MyApp());
+  // initializeDateFormatting().then((_) =>
+      runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
