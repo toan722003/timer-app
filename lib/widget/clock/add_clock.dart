@@ -25,9 +25,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
   }
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: UIColor.white,
       appBar: AppBar(
@@ -112,24 +110,26 @@ class _AddClockWidgetState extends State<AddClockWidget> {
               child: ListView.separated(
                 itemCount: 7,
                 itemBuilder: (context, index) {
-                  return Container(
-                    alignment: Alignment.center,
-                    width: 35.w,
-                    height: 35.h,
-                    decoration: const BoxDecoration(
-                      color: UIColor.accentWhite,
-                      shape: BoxShape.circle,
-                    ),
-                    child: InkWell(
-                      child: Text(
-                        index == 6 ? "CN" : "T${index + 2}",
-                        style: UITextStyle.day_white_13_bold,
-                      ),
-                      onTap: () {
-                        print("T$index");
-                      },
-                    ),
-                  );
+                  return Obx(() => Container(
+                        alignment: Alignment.center,
+                        width: 35.w,
+                        height: 35.h,
+                        decoration: BoxDecoration(
+                          color: addClockController.isSelect.isFalse
+                              ? UIColor.accentWhite
+                              : UIColor.accentGreen,
+                          shape: BoxShape.circle,
+                        ),
+                        child: InkWell(
+                          child: Text(
+                            index == 6 ? "CN" : "T${index + 2}",
+                            style: UITextStyle.day_white_13_bold,
+                          ),
+                          onTap: () {
+                            addClockController.isSelect.value = !addClockController.isSelect.value;
+                          },
+                        ),
+                      ));
                 },
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (BuildContext context, int index) {
@@ -146,18 +146,23 @@ class _AddClockWidgetState extends State<AddClockWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FutureAddClock(imageIcon: "resources/images/rung.png", nameFuture: "Rung"),
-                InkResponse(
-                  onTap: () {
-                    print("Rung");
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: UIColor.accentWhite,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: UIColor.black, style: BorderStyle.solid),
+                Obx(
+                  () => InkResponse(
+                    onTap: () {
+                      addClockController.isSelect.value = !addClockController.isSelect.value;
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: UIColor.accentWhite,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: UIColor.black, style: BorderStyle.solid),
+                      ),
+                      width: 30,
+                      height: 30,
+                      child: Icon(addClockController.isSelect.isFalse
+                          ? Icons.factory
+                          : Icons.incomplete_circle_sharp),
                     ),
-                    width: 30,
-                    height: 30,
                   ),
                 ),
               ],
@@ -173,13 +178,16 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                 InkResponse(
                   onTap: () {
                     showModalBottomSheet(
+                        isScrollControlled: true,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10), topRight: Radius.circular(10)),
                         ),
                         context: context,
                         backgroundColor: UIColor.white,
-                        builder: (context) => TableCalender());
+                        builder: (context) {
+                          return SizedBox(height: 500.h, child: TableCalender());
+                        });
                   },
                   child: Container(
                     decoration: BoxDecoration(
