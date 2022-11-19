@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:timer_app/bindings/add_clock_binding.dart';
+import 'package:timer_app/bindings/add_task_binding.dart';
 import 'package:timer_app/bindings/clock_binding.dart';
 import 'package:timer_app/bindings/home_menu_binding.dart';
 import 'package:timer_app/bindings/note_binding.dart';
@@ -15,11 +15,12 @@ import 'package:timer_app/widget/home_menu.dart';
 import 'package:timer_app/widget/note/note_home.dart';
 import 'package:timer_app/widget/setting/setting.dart';
 import 'package:timer_app/widget/splashscreen.dart';
+import 'package:timer_app/widget/task/add_task.dart';
 import 'package:timer_app/widget/task/task_home.dart';
 
 Future main() async {
   // initializeDateFormatting().then((_) =>
-      runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -46,7 +47,11 @@ class MyApp extends StatelessWidget {
             GetPage(name: "/homemenu", page: () => HomeMenuWidget(), binding: HomeMenuBinding()),
             GetPage(name: "/notehome", page: () => NoteHomeWidget(), binding: NoteBinding()),
             GetPage(name: "/setting", page: () => SettingWidget(), binding: SettingBinDing()),
-            GetPage(name: "/homemenu/addclock", page: () => AddClockWidget(), binding: AddClockBinding()),
+            GetPage(
+                name: "/homemenu/addclock",
+                page: () => AddClockWidget(),
+                binding: AddClockBinding()),
+            GetPage(name: "/task/addtask", page: () => AddTaskWidget(), binding: AddTaskBinding()),
           ],
         );
       },

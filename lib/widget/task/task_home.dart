@@ -116,7 +116,7 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
             )),
         child: InkWell(
           onTap: () {
-            Get.toNamed("/homemenu/addclock");
+            Get.toNamed("/task/addtask");
           },
         ),
       ),
