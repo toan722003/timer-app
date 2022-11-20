@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/task_controller.dart';
 import 'package:timer_app/theme/color.dart';
+import 'package:timer_app/widget/task/all_task.dart';
+import 'package:timer_app/widget/task/countdown_task.dart';
 import 'package:timer_app/widget/task/itemTaskInListView.dart';
 
 import '../../theme/textStyle.dart';
@@ -73,7 +75,9 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
                   style: UITextStyle.todayTask_black_20_bold,
                 )),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(()=>CountDownTask());
+                  },
                   child: Text(
                     "See All",
                     style: UITextStyle.text_notifical_red_20_bold,
@@ -94,8 +98,10 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
                   return ItemTaskInListView(
                     image: "resources/images/readingbook.png",
                     title: "Read Book",
-                    time: "50 minutes",
-                    onTap: () {},
+                    time: 50,
+                    onTap: () {
+                      Get.to(() => AllTask());
+                    },
                     color: index % 2 == 0 ? UIColor.yellow : UIColor.accentGreen,
                   );
                 },

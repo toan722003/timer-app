@@ -46,6 +46,8 @@ dependencies:
   # Pick day
   table_calendar: ^3.0.8
   intl: ^0.17.0
+  # Count down
+  circular_countdown_timer: ^0.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timer_app/theme/color.dart';
@@ -6,9 +6,9 @@ import 'package:timer_app/theme/textStyle.dart';
 
 class ItemTaskInListView extends StatelessWidget {
   String? title;
-  String? time;
+  double? time;
   String? image;
-  Function? onTap;
+  void Function()? onTap;
   Color? color;
 
   ItemTaskInListView({Key? key, this.title, this.time, this.image, this.onTap, this.color})
@@ -19,7 +19,7 @@ class ItemTaskInListView extends StatelessWidget {
     String image = this.image != null ? this.image! : "";
     String title = this.title != null ? this.title! : "";
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15.h,horizontal: 3.w),
+      margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 3.w),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       height: 88.h,
       decoration: BoxDecoration(
@@ -44,7 +44,9 @@ class ItemTaskInListView extends StatelessWidget {
               image: AssetImage(image),
             ),
           ),
-          SizedBox(width: 20.w,),
+          SizedBox(
+            width: 20.w,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,13 +57,14 @@ class ItemTaskInListView extends StatelessWidget {
                 ),
                 Expanded(child: Container()),
                 Text(
-                  time!,
+                  "$time minutes",
                   style: UITextStyle.countTask_accantGrey_14_normal,
                 ),
               ],
             ),
           ),
           Container(
+            alignment: Alignment.center,
             margin: EdgeInsets.only(top: 20.h),
             width: 40.w,
             height: 40.h,
@@ -70,13 +73,13 @@ class ItemTaskInListView extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: InkWell(
-              onTap: () {},
-              child: const Icon(
-                Icons.arrow_right,
-                size: 40,
-              ),
-            ),
-          )
+                onTap: onTap,
+                child: Image(
+                  width: 15.w,
+                  height: 15.h,
+                  image: const AssetImage("resources/images/tritangleicon.png"),
+                )),
+          ),
         ],
       ),
     );
