@@ -9,7 +9,7 @@ import '../../theme/color.dart';
 import '../../theme/textStyle.dart';
 
 class AllTask extends StatelessWidget {
-  const AllTask({Key? key}) : super(key: key);
+   const AllTask({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class AllTask extends StatelessWidget {
               image: "resources/images/learn_programming.png",
               color: UIColor.black.withOpacity(0.25),
               onTap: (){
-                Get.to(()=>CountDownTask());
+                Get.toNamed("/countdown");
               },
             );
           },

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:timer_app/bindings/add_clock_binding.dart';
 import 'package:timer_app/bindings/add_task_binding.dart';
 import 'package:timer_app/bindings/clock_binding.dart';
+import 'package:timer_app/bindings/count_down_binding.dart';
 import 'package:timer_app/bindings/home_menu_binding.dart';
 import 'package:timer_app/bindings/note_binding.dart';
 import 'package:timer_app/bindings/setting_binding.dart';
@@ -16,6 +17,7 @@ import 'package:timer_app/widget/note/note_home.dart';
 import 'package:timer_app/widget/setting/setting.dart';
 import 'package:timer_app/widget/splashscreen.dart';
 import 'package:timer_app/widget/task/add_task.dart';
+import 'package:timer_app/widget/task/countdown_task.dart';
 import 'package:timer_app/widget/task/task_home.dart';
 
 Future main() async {
@@ -52,6 +54,7 @@ class MyApp extends StatelessWidget {
                 page: () => AddClockWidget(),
                 binding: AddClockBinding()),
             GetPage(name: "/task/addtask", page: () => AddTaskWidget(), binding: AddTaskBinding()),
+            GetPage(name: "/countdown", page: () => CountDownTask(), binding: CountDownBinding()),
           ],
         );
       },

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:timer_app/controller/task_controller.dart';
 import 'package:timer_app/theme/color.dart';
 import 'package:timer_app/widget/task/all_task.dart';
-import 'package:timer_app/widget/task/countdown_task.dart';
 import 'package:timer_app/widget/task/itemTaskInListView.dart';
 
 import '../../theme/textStyle.dart';
@@ -76,7 +75,7 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
                 )),
                 TextButton(
                   onPressed: () {
-                    Get.to(()=>CountDownTask());
+                    Get.to(()=>AllTask());
                   },
                   child: Text(
                     "See All",
@@ -100,7 +99,7 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
                     title: "Read Book",
                     time: 50,
                     onTap: () {
-                      Get.to(() => AllTask());
+                      Get.toNamed("/countdown");
                     },
                     color: index % 2 == 0 ? UIColor.yellow : UIColor.accentGreen,
                   );
