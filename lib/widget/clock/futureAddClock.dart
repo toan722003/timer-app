@@ -5,13 +5,13 @@ import 'package:timer_app/theme/color.dart';
 import 'package:timer_app/theme/textStyle.dart';
 
 class FutureAddClock extends StatelessWidget {
-  String imageIcon;
+  IconData iconData;
   String nameFuture;
-  String? imageButton;
   Function? onTap;
+  Color? color;
 
   FutureAddClock(
-      {Key? key, required this.imageIcon, required this.nameFuture, this.imageButton, this.onTap})
+      {Key? key, required this.iconData, required this.nameFuture, this.onTap, this.color})
       : super(key: key);
 
   @override
@@ -21,15 +21,15 @@ class FutureAddClock extends StatelessWidget {
       child: Row(
         children: [
           Container(
+            alignment: Alignment.center,
             width: 40.w,
             height: 40.h,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(imageIcon),
-              ),
               shape: BoxShape.circle,
-              border: Border.all(style: BorderStyle.solid, color: UIColor.black),
+              border: Border.all(style: BorderStyle.solid, color: UIColor.countDown_whiteAccent),
+              color: color,
             ),
+            child: Icon(iconData, color: UIColor.white),
           ),
           SizedBox(
             width: 25.w,

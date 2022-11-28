@@ -19,9 +19,9 @@ class AllTask extends StatelessWidget {
         backgroundColor: UIColor.white,
         elevation: 0.0,
         leading: InkWell(
-          child: const Icon(
+          child: Icon(
             Icons.arrow_left,
-            color: UIColor.black,
+            color: UIColor.black.withOpacity(0.75),
             size: 50,
           ),
           onTap: () {
@@ -30,7 +30,7 @@ class AllTask extends StatelessWidget {
         ),
         title: Text(
           "Today Tasks (10)",
-          style: UITextStyle.newTask_black_24_bold,
+          style: UITextStyle.newTask_black_24_bold.copyWith(color: UIColor.black.withOpacity(0.75)),
         ),
       ),
       body: Container(

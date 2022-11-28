@@ -44,7 +44,7 @@ class CountDownTask extends StatelessWidget {
               controller: countDownTaskController.controller,
               width: 300.w,
               height: 300.h,
-              ringColor: Colors.grey[300]!,
+              ringColor: UIColor.countDown_whiteAccent,
               ringGradient: null,
               fillColor: UIColor.accentBlue,
               fillGradient: null,
@@ -92,13 +92,12 @@ class CountDownTask extends StatelessWidget {
                   () => countDownTaskController.isResume.value
                       ? Expanded(
                           child: button(
-                              onPressed: countDownTaskController.checkResume,
-                              image: "resources/images/stop.png"),
+                              onPressed: countDownTaskController.checkResume, iconData: Icons.stop),
                         )
                       : Expanded(
                           child: button(
                               onPressed: countDownTaskController.checkResume,
-                              image: "resources/images/tritangleicon.png"),
+                              iconData: Icons.start_outlined),
                         ),
                 ),
                 Expanded(
@@ -124,7 +123,7 @@ class CountDownTask extends StatelessWidget {
     );
   }
 
-  Widget button({String? title, VoidCallback? onPressed, String? image}) {
+  Widget button({String? title, VoidCallback? onPressed, IconData? iconData}) {
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -135,10 +134,9 @@ class CountDownTask extends StatelessWidget {
           shape: BoxShape.circle,
           color: UIColor.accentGreen,
         ),
-        child: Image(
-          width: 40.w,
-          height: 40.h,
-          image: AssetImage("$image"),
+        child: Icon(
+          iconData,
+          color: UIColor.white,
         ),
       ),
     );

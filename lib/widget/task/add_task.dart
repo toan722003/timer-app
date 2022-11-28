@@ -1,18 +1,17 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/add_clock_controller.dart';
 import 'package:timer_app/controller/add_task_controllrer.dart';
 import 'package:timer_app/theme/color.dart';
+import 'package:timer_app/theme/gradient.dart';
 import 'package:timer_app/theme/textStyle.dart';
 
 import '../clock/table_calender.dart';
 
 class AddTaskWidget extends StatefulWidget {
-  const AddTaskWidget({Key? key}) : super(key: key);
+  AddTaskWidget({Key? key}) : super(key: key);
 
   @override
   _AddTaskWidgetState createState() => _AddTaskWidgetState();
@@ -30,9 +29,9 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
         backgroundColor: UIColor.white,
         elevation: 0.0,
         leading: InkWell(
-          child: const Icon(
+          child: Icon(
             Icons.arrow_left,
-            color: UIColor.black,
+            color: UIColor.black.withOpacity(0.75),
             size: 50,
           ),
           onTap: () {
@@ -41,7 +40,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
         ),
         title: Text(
           "Create New Task",
-          style: UITextStyle.newTask_black_24_bold,
+          style: UITextStyle.newTask_black_24_bold.copyWith(color: UIColor.black.withOpacity(0.75)),
         ),
       ),
       body: SingleChildScrollView(
@@ -57,17 +56,15 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
               SizedBox(
                 height: 50.h,
                 child: TextFormField(
-                  maxLines: 1,
-                  decoration: InputDecoration(
-                    hintText: "Task title",
-                    hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
-                    contentPadding: EdgeInsets.only(left: 20.w),
-                    // labelText: "Title",
-                    // labelStyle: UITextStyle.textViewPeecent_black_18_bold.copyWith(fontSize: 23),
-                    enabledBorder: onEnableBorder(),
-                    focusedBorder: onFocusBorder(),
-                  ),
-                ),
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      fillColor: UIColor.task_redWhite,
+                      hintText: "Task title",
+                      hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
+                      contentPadding: EdgeInsets.only(left: 20.w),
+                      enabledBorder: onEnableBorder(),
+                      focusedBorder: onFocusBorder(),
+                    )),
               ),
               SizedBox(height: 10.h),
               Row(
@@ -123,8 +120,6 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                                 hintText: "Start Time",
                                 hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
                                 contentPadding: EdgeInsets.only(left: 20.w),
-                                // labelText: "Title",
-                                // labelStyle: UITextStyle.textViewPeecent_black_18_bold.copyWith(fontSize: 23),
                                 enabledBorder: onEnableBorder(),
                                 focusedBorder: onFocusBorder(),
                                 suffixIcon: suffixIconTFF("resources/images/clock_in_new_task.png"),
@@ -139,22 +134,34 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
               nameOfLabel("Category"),
               SizedBox(
                 height: 50.h,
-                child: TextFormField(
-                  maxLines: 1,
-                  decoration: InputDecoration(
-                      hintText: "Category",
-                      hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
-                      contentPadding: EdgeInsets.only(left: 20.w),
-                      // labelText: "Title",
-                      // labelStyle: UITextStyle.textViewPeecent_black_18_bold.copyWith(fontSize: 23),
-                      enabledBorder: onEnableBorder(),
-                      focusedBorder: onFocusBorder(),
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down_outlined,
-                        size: 50.sp,
-                        color: UIColor.accentRed,
-                      )),
-                ),
+                // child: TypeAheadField(
+                //   animationStart: 0,
+                //   animationDuration: Duration.zero,
+                //   textFieldConfiguration: const TextFieldConfiguration(
+                //       autofocus: true,
+                //       style: TextStyle(fontSize: 15),
+                //       decoration: InputDecoration(border: OutlineInputBorder())),
+                //   suggestionsBoxDecoration: SuggestionsBoxDecoration(color: Colors.lightBlue[50]),
+                //   suggestionsCallback: (pattern) {
+                //     List<String> matches = <String>[];
+                //     matches.addAll(addTaskController.suggestons);
+                //     matches.retainWhere((s) {
+                //       return s.toLowerCase().contains(pattern.toLowerCase());
+                //     });
+                //     return matches;
+                //   },
+                //   itemBuilder: (context, sone) {
+                //     return Card(
+                //       child: Container(
+                //         padding: EdgeInsets.all(10),
+                //         child: Text(sone.toString()),
+                //       ),
+                //     );
+                //   },
+                //   onSuggestionSelected: (suggestion) {
+                //     print(suggestion);
+                //   },
+                // ),
               ),
               SizedBox(height: 10.h),
               nameOfLabel("Long Break"),
@@ -163,7 +170,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                   height: 20.h,
                   child: Slider(
                       activeColor: UIColor.accentGreen,
-                      inactiveColor: UIColor.accentWhite,
+                      inactiveColor: UIColor.countDown_whiteAccent,
                       divisions: 10,
                       min: 0,
                       max: 180,
@@ -183,7 +190,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                   height: 20.h,
                   child: Slider(
                       activeColor: UIColor.accentGreen,
-                      inactiveColor: UIColor.accentWhite,
+                      inactiveColor: UIColor.countDown_whiteAccent,
                       divisions: 5,
                       min: 0,
                       max: 30,
@@ -200,8 +207,8 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                 alignment: Alignment.center,
                 height: 50.h,
                 decoration: const BoxDecoration(
-                  color: UIColor.createTask,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
+                  gradient: MyGradient.linerGradient3,
                 ),
                 child: InkWell(
                   onTap: () {},
@@ -239,7 +246,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
   OutlineInputBorder onFocusBorder() {
     return const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(10)),
-      borderSide: BorderSide(color: UIColor.accentGreen),
+      borderSide: BorderSide(color: UIColor.accentGreen, width: 3.0),
     );
   }
 

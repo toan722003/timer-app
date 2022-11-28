@@ -25,6 +25,7 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> with TickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: UIColor.white,
       body: TabBarView(
         children: homeMenuController.listScreen,
         controller: homeMenuController.tabController,

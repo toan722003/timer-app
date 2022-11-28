@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timer_app/theme/color.dart';
@@ -73,12 +72,9 @@ class ItemTaskInListView extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: InkWell(
-                onTap: onTap,
-                child: Image(
-                  width: 15.w,
-                  height: 15.h,
-                  image: const AssetImage("resources/images/tritangleicon.png"),
-                )),
+              onTap: onTap,
+              child: const Icon(Icons.play_arrow,color: UIColor.white),
+            ),
           ),
         ],
       ),

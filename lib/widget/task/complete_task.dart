@@ -12,24 +12,6 @@ class CompleteAllTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: UIColor.white,
-      appBar: AppBar(
-        backgroundColor: UIColor.white,
-        elevation: 0.0,
-        leading: InkWell(
-          child: const Icon(
-            Icons.arrow_left,
-            color: UIColor.black,
-            size: 50,
-          ),
-          onTap: () {
-            Get.back();
-          },
-        ),
-        title: Text(
-          "Reading Book",
-          style: UITextStyle.newTask_black_24_bold,
-        ),
-      ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(

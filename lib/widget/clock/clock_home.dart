@@ -19,10 +19,10 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: UIColor.white,
       body: Container(
         height: Get.height,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        color: UIColor.white,
         child: clockController.list.isEmpty
             ? nonHaveItem()
             : ListView.builder(
@@ -32,39 +32,42 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                     height: 110.h,
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     margin: EdgeInsets.only(top: 15.h, bottom: 15.h),
-                    decoration: const BoxDecoration(
-                      color: UIColor.btOnOff,
+                    decoration: BoxDecoration(
+                      color: UIColor.white,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     offset: Offset(0, 4),
-                      //     blurRadius: 4,
-                      //     spreadRadius: 0,
-                      //   )
-                      // ]
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 1,
+                          spreadRadius: 0,
+                          color: UIColor.black.withOpacity(0.25),
+                        )
+                      ],
                     ),
                     child: Column(
                       children: [
                         Row(
                           children: [
                             Expanded(
+                              flex: 3,
                               child: Text(
                                 "4: 35 CH",
                                 style: UITextStyle.item_clock_black_40_bold,
                               ),
                             ),
                             Container(
-                              width: 30.w,
-                              height: 30.h,
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.only(right: 10.w),
+                              width: 40.w,
+                              height: 20.h,
                               decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("resources/images/hand_point_right.png")),
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
+                                color: UIColor.accentGreen,
                               ),
                               child: InkWell(
                                 onTap: () {
                                   print("next screen is edit clock");
                                 },
+                                child: const Icon(Icons.navigate_next_outlined,color: UIColor.white,),
                               ),
                             ),
                           ],
@@ -72,6 +75,7 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                         Row(
                           children: [
                             Expanded(
+                              flex: 3,
                                 child: Text(
                               "T2,T3,T4,T5",
                               style: UITextStyle.item_clock_black_15_bold,
@@ -84,7 +88,6 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                                 });
                               },
                               activeColor: UIColor.accentGreen,
-                              activeTrackColor: UIColor.accentGreen,
                             ),
                           ],
                         ),
@@ -94,20 +97,23 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                 },
               ),
       ),
-      floatingActionButton: Container(
-        width: 70.w,
-        height: 70.h,
-        decoration: BoxDecoration(
+      floatingActionButton: InkWell(
+        onTap: () {
+          Get.toNamed("/homemenu/addclock");
+        },
+        child: Container(
+          width: 70.w,
+          height: 70.h,
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: UIColor.accentWhite,
-            border: Border.all(style: BorderStyle.solid, color: UIColor.black, width: 2),
-            image: const DecorationImage(
-              image: AssetImage("resources/images/images.png"),
-            )),
-        child: InkWell(
-          onTap: () {
-            Get.toNamed("/homemenu/addclock");
-          },
+            color: UIColor.accentGreen,
+            border: Border.all(style: BorderStyle.solid, color: UIColor.white, width: 1),
+          ),
+          child: const Icon(
+            Icons.add_circle,
+            color: UIColor.white,
+            size: 40,
+          ),
         ),
       ),
     );
@@ -122,7 +128,9 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
           margin: EdgeInsets.symmetric(horizontal: 2.w),
           child: Image(image: AssetImage("resources/images/non_clock.png")),
         ),
-        SizedBox(height: 20.h,),
+        SizedBox(
+          height: 20.h,
+        ),
         Container(
           alignment: Alignment.center,
           height: 30.h,
@@ -139,7 +147,7 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
             "Click the  (+)  icon to add a new clock",
             style: UITextStyle.taskbar_item_black_12_normal,
           ),
-        )
+        ),
       ],
     );
   }

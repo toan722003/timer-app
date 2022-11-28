@@ -5,6 +5,7 @@ import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/add_clock_controller.dart';
 import 'package:timer_app/theme/color.dart';
+import 'package:timer_app/theme/gradient.dart';
 import 'package:timer_app/theme/textStyle.dart';
 import 'package:timer_app/widget/clock/futureAddClock.dart';
 import 'package:timer_app/widget/clock/table_calender.dart';
@@ -19,6 +20,8 @@ class AddClockWidget extends StatefulWidget {
 class _AddClockWidgetState extends State<AddClockWidget> {
   AddClockController addClockController = Get.find();
 
+  DateTime dateTime = DateTime.now();
+
   @override
   void initState() {
     super.initState();
@@ -32,43 +35,39 @@ class _AddClockWidgetState extends State<AddClockWidget> {
         elevation: 0,
         leadingWidth: 130.w,
         backgroundColor: UIColor.white,
-        leading: Container(
-          alignment: Alignment.center,
-          margin: EdgeInsets.only(left: 20.w, top: 8.h, bottom: 8.h),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            color: UIColor.accentRed,
-          ),
-          child: InkWell(
-            child: Text(
-              "Cancel",
-              style: UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20.sp),
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(left: 20.w, top: 10.h, bottom: 10.h),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: UIColor.task_redWhite,
             ),
-            onTap: () {
-              Get.back();
-            },
+            child: const Icon(
+              Icons.backspace_rounded,
+              color: UIColor.white,
+            ),
           ),
         ),
         actions: [
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            height: 35.h,
-            margin: EdgeInsets.only(right: 20.w, top: 8.h, bottom: 8.h),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: UIColor.accentGreen,
-            ),
-            child: InkWell(
-              onTap: () {
-                print("Tao bao thuc thanh cong");
-              },
-              child: Text(
-                "Done",
-                // style:
-                //     UITextStyle.cancel_black_24_normal.copyWith(fontSize: 20, color: UIColor.white),
-                style: UITextStyle.cancel_black_24_normal
-                    .copyWith(fontSize: 20.sp, color: UIColor.white),
+          InkWell(
+            onTap: () {
+              print("${dateTime.hour} : ${dateTime.minute}");
+            },
+            child: Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 25.w),
+              margin: EdgeInsets.only(right: 20.w, top: 10.h, bottom: 10.h),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: UIColor.accentGreen,
+              ),
+              child: const Icon(
+                Icons.done_all_outlined,
+                color: UIColor.white,
               ),
             ),
           ),
@@ -80,25 +79,28 @@ class _AddClockWidgetState extends State<AddClockWidget> {
         child: Column(
           children: [
             Container(
+              alignment: Alignment.center,
+              height: 250.h,
               margin: EdgeInsets.symmetric(vertical: 10.h),
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
+                gradient: MyGradient.linerGradient1,
                 shape: BoxShape.circle,
-                border: Border.all(color: UIColor.accentGreen, style: BorderStyle.solid, width: 3),
+                border: Border.all(color: UIColor.accentBlue, style: BorderStyle.solid, width: 4),
               ),
               child: TimePickerSpinner(
                 alignment: Alignment.center,
                 is24HourMode: true,
-                normalTextStyle: TextStyle(fontSize: 20.sp, color: UIColor.black),
-                highlightedTextStyle: TextStyle(fontSize: 20.sp, color: UIColor.black),
+                normalTextStyle: TextStyle(fontSize: 22.sp, color: UIColor.black),
+                highlightedTextStyle: TextStyle(fontSize: 30.sp, color: UIColor.black),
                 spacing: 40.w,
                 itemHeight: 50.h,
                 isForce2Digits: true,
-                // onTimeChange: (time) {
-                //   setState(() {
-                //     _dateTime = time;
-                //   });
-                // },
+                onTimeChange: (time) {
+                  setState(() {
+                    dateTime = time;
+                  });
+                },
               ),
             ),
             SizedBox(
@@ -116,14 +118,15 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                         height: 35.h,
                         decoration: BoxDecoration(
                           color: addClockController.isSelect.isFalse
-                              ? UIColor.accentWhite
+                              ? UIColor.countDown_whiteAccent
                               : UIColor.accentGreen,
                           shape: BoxShape.circle,
+                          border: Border.all(color: UIColor.black),
                         ),
                         child: InkWell(
                           child: Text(
                             index == 6 ? "CN" : "T${index + 2}",
-                            style: UITextStyle.day_white_13_bold,
+                            style: UITextStyle.day_white_13_bold.copyWith(color: UIColor.black),
                           ),
                           onTap: () {
                             addClockController.isSelect.value = !addClockController.isSelect.value;
@@ -145,7 +148,11 @@ class _AddClockWidgetState extends State<AddClockWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                FutureAddClock(imageIcon: "resources/images/rung.png", nameFuture: "Rung"),
+                FutureAddClock(
+                  nameFuture: "Rung",
+                  iconData: Icons.vibration_outlined,
+                  color: UIColor.task_greenAccent,
+                ),
                 Obx(
                   () => InkResponse(
                     onTap: () {
@@ -153,15 +160,17 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: UIColor.accentWhite,
+                        color: addClockController.isSelect.isFalse
+                            ? UIColor.countDown_whiteAccent
+                            : UIColor.accentGreen,
                         shape: BoxShape.circle,
                         border: Border.all(color: UIColor.black, style: BorderStyle.solid),
                       ),
                       width: 30,
                       height: 30,
-                      child: Icon(addClockController.isSelect.isFalse
-                          ? Icons.factory
-                          : Icons.incomplete_circle_sharp),
+                      child: addClockController.isSelect.isFalse
+                          ? Container()
+                          : const Icon(Icons.done, color: UIColor.white),
                     ),
                   ),
                 ),
@@ -170,38 +179,39 @@ class _AddClockWidgetState extends State<AddClockWidget> {
             SizedBox(
               height: 25.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FutureAddClock(
-                    imageIcon: "resources/images/calender.png", nameFuture: "Hen bao thuc"),
-                InkResponse(
-                  onTap: () {
-                    showModalBottomSheet(
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-                        ),
-                        context: context,
-                        backgroundColor: UIColor.white,
-                        builder: (context) {
-                          return SizedBox(height: 500.h, child: TableCalender());
-                        });
-                  },
-                  child: Container(
+            InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                    ),
+                    context: context,
+                    backgroundColor: null,
+                    builder: (context) {
+                      return Container(height: 500.h, child: TableCalender());
+                    });
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FutureAddClock(
+                    nameFuture: "Hen bao thuc",
+                    iconData: Icons.calendar_month_rounded,
+                    color: UIColor.task_yellowDark,
+                  ),
+                  Container(
                     decoration: BoxDecoration(
-                        color: UIColor.accentWhite,
+                        color: UIColor.countDown_whiteAccent,
                         shape: BoxShape.circle,
-                        border: Border.all(color: UIColor.black, style: BorderStyle.solid),
-                        image: const DecorationImage(
-                          image: AssetImage("resources/images/images.png"),
-                        )),
+                        border: Border.all(color: UIColor.black, style: BorderStyle.solid)),
                     width: 30,
                     height: 30,
+                    child: const Icon(Icons.add, color: UIColor.black),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
               height: 25.h,
@@ -217,7 +227,10 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   FutureAddClock(
-                      imageIcon: "resources/images/chuong.png", nameFuture: "Nhac Chuong"),
+                    nameFuture: "Nhac Chuong",
+                    iconData: Icons.ring_volume_rounded,
+                    color: UIColor.task_redWhite,
+                  ),
                 ],
               ),
             ),

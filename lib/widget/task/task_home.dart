@@ -75,11 +75,12 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
                 )),
                 TextButton(
                   onPressed: () {
-                    Get.to(()=>AllTask());
+                    Get.to(() => AllTask());
                   },
                   child: Text(
                     "See All",
-                    style: UITextStyle.text_notifical_red_20_bold,
+                    style: UITextStyle.text_notifical_red_20_bold
+                        .copyWith(color: UIColor.newTask_redDark),
                   ),
                 ),
               ],
@@ -109,20 +110,28 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
           ],
         ),
       ),
-      floatingActionButton: Container(
-        width: 70.w,
-        height: 70.h,
-        decoration: BoxDecoration(
+      floatingActionButton: InkWell(
+        onTap: () {
+          Get.toNamed("/task/addtask");
+        },
+        child: Container(
+          width: 70.w,
+          height: 70.h,
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: UIColor.accentWhite,
-            border: Border.all(style: BorderStyle.solid, color: UIColor.black, width: 2),
-            image: const DecorationImage(
-              image: AssetImage("resources/images/images.png"),
-            )),
-        child: InkWell(
-          onTap: () {
-            Get.toNamed("/task/addtask");
-          },
+            gradient: const LinearGradient(
+              colors: [UIColor.task_yellowDark, UIColor.task_redWhite, UIColor.accentBlue],
+              stops: [0.2, 0.6, 0.8],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            border: Border.all(style: BorderStyle.solid, color: UIColor.black, width: 1),
+          ),
+          child: const Icon(
+            Icons.add_circle,
+            color: UIColor.white,
+            size: 40,
+          ),
         ),
       ),
     );

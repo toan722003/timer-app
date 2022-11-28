@@ -26,4 +26,26 @@ class UIColor {
   static const Color accentWhite = Color(0xFFC5C7C9);
   static const Color accentGrey = Color(0xFF4E5964);
   static const Color accnetWhite = Color(0xFFD9D9D9);
+  static const Color task_CountPercent = Color(0xFFFF6469);
+  static const Color task_background = Color(0xFFfdfdfd);
+  static const Color task_red = Color(0xFFff5726);
+  static const Color task_green = Color(0xFF27c86c);
+  static const Color task_yellowDark = Color(0xFFffc02d);
+  static const Color task_blue = Color(0xFF00a9f1);
+  static const Color task_greenDark = Color(0xFF8bc255);
+  static const Color task_redWhite = Color(0xFFff767a);
+  static const Color task_greenAccent = Color(0xFFcddc4c);
+  static const Color task_redCrimson = Color(0xFFf54336);
+  static const Color task_blackGreen = Color(0xFF607d8a);
+  static const Color newTask_grey = Color(0xFFfafafa);
+  static const Color newTask_background = Color(0xFFffffff);
+  static const Color newTask_red = Color(0xFFda6266 );
+  static const Color newTask_redAccent = Color(0xFFfff2f2 );
+  static const Color newTask_slider = Color(0xFFff696e );
+  static const Color newTask_redDark = Color(0xFFff575c );
+  static const Color countDown_green = Color(0xFF2acc6e );
+  static const Color countDown_whiteAccent = Color(0xFFeeeeee	);
+  static const Color countDown_bgResume = Color(0xFFff6266 );
+  static const Color countDown_bgRestart = Color(0xFFf5f5f5 );
+  static const Color countDown_bgStart = Color(0xFF23c367 );
 }
