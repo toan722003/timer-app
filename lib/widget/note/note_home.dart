@@ -1,7 +1,7 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:timer_app/theme/gradient.dart';
 
 import '../../theme/color.dart';
 import '../../theme/textStyle.dart';
@@ -60,55 +60,89 @@ class _NoteHomeWidgetState extends State<NoteHomeWidget> {
     return CalendarControllerProvider(
         controller: controller,
         child: Scaffold(
-          body: DayView(
-            controller: controller..addAll(_events),
-            eventTileBuilder: (date, events, rect, start, end) {
-              CalendarEventData calendarEventData = events.elementAt(0);
-              // date = calendarEventData.endDate;
-              // start = calendarEventData.startTime!;
-              // end = calendarEventData.endTime!;
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                height: 30,
-                decoration: const BoxDecoration(
-                  color: UIColor.accentRed,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        calendarEventData.title,
-                        style: UITextStyle.note_white_16_bold,
+          body: Container(
+            // padding: EdgeInsets.symmetric(horizontal: 10.w),
+            margin: EdgeInsets.only(top: 150.h),
+            child: DayView(
+              // design tab bar select day
+              headerStyle: HeaderStyle(
+                  headerTextStyle: UITextStyle.textViewPeecent_black_18_bold.copyWith(fontSize: 16),
+                  leftIcon: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: UIColor.black),
+                        color: UIColor.accentBlue),
+                    child: const Icon(Icons.chevron_left, color: UIColor.white),
+                  ),
+                  rightIcon: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: UIColor.black),
+                        color: UIColor.accentBlue),
+                    child: const Icon(Icons.chevron_right, color: UIColor.white),
+                  ),
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(15), topLeft: Radius.circular(15)),
+                    gradient: MyGradient.linerGradient0,
+                  )),
+              hourIndicatorSettings: const HourIndicatorSettings(
+                color: UIColor.countDown_whiteAccent,
+              ),
+              timeLineWidth: 60.w,
+              timeLineBuilder: (date) {
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "${date.hour} ${date.hour > 12 ? "PM" : "AM"}",
+                    style: UITextStyle.button_select_black_16_bold.copyWith(fontSize: 14),
+                  ),
+                );
+              },
+              controller: controller..addAll(_events),
+              eventTileBuilder: (date, events, rect, start, end) {
+                CalendarEventData calendarEventData = events.elementAt(0);
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10.w),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+                  height: 30,
+                  decoration: const BoxDecoration(
+                    color: UIColor.accentRed,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          calendarEventData.title,
+                          style: UITextStyle.note_white_16_bold,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        "$start",
-                        style: UITextStyle.note_white_12_normal,
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-            showVerticalLine: false,
-            // To display live time line in day view.
-            showLiveTimeLineInAllDays: false,
-            // To display live time line in all pages in day view.
-            minDay: DateTime(2020),
-            maxDay: DateTime(2023),
-            initialDay: DateTime.now(),
-            heightPerMinute: 1,
-            // height occupied by 1 minute time span.
-            eventArranger: const SideEventArranger(),
-            // To define how simultaneous events will be arranged.
-            onEventTap: (events, date) {
-              print(events.elementAt(0).startTime);
-            },
-            onDateLongPress: (date) => {},
+                      Expanded(
+                        child: Text(
+                          "$start",
+                          style: UITextStyle.note_white_12_normal,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+              showVerticalLine: true,
+              showLiveTimeLineInAllDays: false,
+              minDay: DateTime(2020),
+              maxDay: DateTime(2023),
+              initialDay: DateTime.now(),
+              heightPerMinute: 1.2,
+              eventArranger: const SideEventArranger(),
+              onEventTap: (events, date) {
+                print(events.elementAt(0).startTime);
+              },
+              onDateLongPress: (date) => {},
+            ),
           ),
         ));
   }

@@ -134,34 +134,50 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
               nameOfLabel("Category"),
               SizedBox(
                 height: 50.h,
-                // child: TypeAheadField(
-                //   animationStart: 0,
-                //   animationDuration: Duration.zero,
-                //   textFieldConfiguration: const TextFieldConfiguration(
-                //       autofocus: true,
-                //       style: TextStyle(fontSize: 15),
-                //       decoration: InputDecoration(border: OutlineInputBorder())),
-                //   suggestionsBoxDecoration: SuggestionsBoxDecoration(color: Colors.lightBlue[50]),
-                //   suggestionsCallback: (pattern) {
-                //     List<String> matches = <String>[];
-                //     matches.addAll(addTaskController.suggestons);
-                //     matches.retainWhere((s) {
-                //       return s.toLowerCase().contains(pattern.toLowerCase());
-                //     });
-                //     return matches;
-                //   },
-                //   itemBuilder: (context, sone) {
-                //     return Card(
-                //       child: Container(
-                //         padding: EdgeInsets.all(10),
-                //         child: Text(sone.toString()),
-                //       ),
-                //     );
-                //   },
-                //   onSuggestionSelected: (suggestion) {
-                //     print(suggestion);
-                //   },
-                // ),
+                child: TypeAheadField(
+                  animationStart: 0,
+                  animationDuration: const Duration(seconds: 1),
+                  textFieldConfiguration: TextFieldConfiguration(
+                    decoration: InputDecoration(
+                      hintText: "Category",
+                      hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
+                      contentPadding: EdgeInsets.only(left: 20.w),
+                      enabledBorder: onEnableBorder(),
+                      focusedBorder: onFocusBorder(),
+                      suffixIcon: const Icon(
+                        Icons.arrow_drop_down_circle_rounded,
+                        color: UIColor.accentGreen,
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                  suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                    color: UIColor.white,
+                    elevation: 0,
+                  ),
+                  suggestionsCallback: (pattern) {
+                    List<String> matches = <String>[];
+                    matches.addAll(addTaskController.suggestions);
+                    matches.retainWhere((s) {
+                      return s.toLowerCase().contains(pattern.toLowerCase());
+                    });
+                    return matches;
+                  },
+                  itemBuilder: (context, some) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        border: Border.all(color: UIColor.black),
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                      padding: EdgeInsets.only(left: 20.w, top: 10.h, bottom: 10.h),
+                      child: Text(some.toString()),
+                    );
+                  },
+                  onSuggestionSelected: (suggestion) {
+                    print(suggestion);
+                  },
+                ),
               ),
               SizedBox(height: 10.h),
               nameOfLabel("Long Break"),

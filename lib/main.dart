@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,23 +7,36 @@ import 'package:timer_app/bindings/add_task_binding.dart';
 import 'package:timer_app/bindings/clock_binding.dart';
 import 'package:timer_app/bindings/count_down_binding.dart';
 import 'package:timer_app/bindings/home_menu_binding.dart';
+import 'package:timer_app/bindings/login_binding.dart';
 import 'package:timer_app/bindings/note_binding.dart';
+import 'package:timer_app/bindings/register_binding.dart';
 import 'package:timer_app/bindings/setting_binding.dart';
 import 'package:timer_app/bindings/task_binding.dart';
 import 'package:timer_app/theme/color.dart';
 import 'package:timer_app/widget/clock/add_clock.dart';
 import 'package:timer_app/widget/clock/clock_home.dart';
 import 'package:timer_app/widget/home_menu.dart';
+import 'package:timer_app/widget/login.dart';
 import 'package:timer_app/widget/note/note_home.dart';
+import 'package:timer_app/widget/register.dart';
 import 'package:timer_app/widget/setting/setting.dart';
 import 'package:timer_app/widget/splashscreen.dart';
 import 'package:timer_app/widget/task/add_task.dart';
 import 'package:timer_app/widget/task/countdown_task.dart';
 import 'package:timer_app/widget/task/task_home.dart';
 
-Future main() async {
-  // initializeDateFormatting().then((_) =>
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en', 'US'), Locale('vi', 'VN')],
+      path: 'assets/translations', // <-- change the path of the translation files
+      fallbackLocale: Locale('en', 'US'),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -39,6 +53,9 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
           theme: ThemeData(
             backgroundColor: UIColor.white,
           ),
@@ -55,6 +72,8 @@ class MyApp extends StatelessWidget {
                 binding: AddClockBinding()),
             GetPage(name: "/task/addtask", page: () => AddTaskWidget(), binding: AddTaskBinding()),
             GetPage(name: "/countdown", page: () => CountDownTask(), binding: CountDownBinding()),
+            GetPage(name: "/login", page: () => LoginWidget(), binding: LoginBinding()),
+            GetPage(name: "/register", page: () => RegisterWidget(), binding: RegisterBinding()),
           ],
         );
       },

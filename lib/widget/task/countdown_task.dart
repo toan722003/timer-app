@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/count_down_task%20_controller.dart';
+import 'package:timer_app/theme/gradient.dart';
 
 import '../../theme/color.dart';
 import '../../theme/textStyle.dart';
@@ -45,11 +46,11 @@ class CountDownTask extends StatelessWidget {
               width: 300.w,
               height: 300.h,
               ringColor: UIColor.countDown_whiteAccent,
-              ringGradient: null,
+              ringGradient: MyGradient.linerGradient3,
               fillColor: UIColor.accentBlue,
               fillGradient: null,
               backgroundColor: UIColor.white,
-              backgroundGradient: null,
+              backgroundGradient: MyGradient.linerGradient2,
               strokeWidth: 20.0,
               strokeCap: StrokeCap.round,
               textStyle: UITextStyle.time_black_70_bold,
@@ -97,13 +98,16 @@ class CountDownTask extends StatelessWidget {
                       : Expanded(
                           child: button(
                               onPressed: countDownTaskController.checkResume,
-                              iconData: Icons.start_outlined),
+                              iconData: Icons.play_arrow),
                         ),
                 ),
                 Expanded(
                   child: InkWell(
-                    onTap: () => countDownTaskController.controller
-                        .restart(duration: countDownTaskController.duration),
+                    onTap: () {
+                      countDownTaskController.controller
+                          .restart(duration: countDownTaskController.duration);
+                      countDownTaskController.controller.pause();
+                    },
                     child: Container(
                       height: 50.h,
                       width: 50.w,

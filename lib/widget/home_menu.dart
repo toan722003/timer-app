@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:timer_app/controller/home_menu_controller.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:timer_app/controller/home_menu_controller.dart';
 
 import '../theme/color.dart';
 
@@ -30,31 +30,30 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> with TickerProviderStat
         children: homeMenuController.listScreen,
         controller: homeMenuController.tabController,
       ),
-      bottomNavigationBar: Container(
-        child: BottomNavigationBar(
-          selectedItemColor: UIColor.black,
-          unselectedItemColor: UIColor.accentGrey,
-          onTap: homeMenuController.onTapChange,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Iconsax.clock_1),
-              label: "Clock",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Iconsax.task_square),
-              label: "Task",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Iconsax.note_1),
-              label: "Note",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Iconsax.setting_2),
-              label: "Setting",
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: Obx(() => SalomonBottomBar(
+            onTap: homeMenuController.onTapChange,
+            currentIndex: homeMenuController.currentIndex.value,
+            selectedItemColor: UIColor.red,
+            unselectedItemColor: UIColor.countDown_whiteAccent,
+            items: [
+              SalomonBottomBarItem(
+                icon: Icon(Iconsax.clock_1),
+                title: Text("Clock"),
+              ),
+              SalomonBottomBarItem(
+                icon: Icon(Iconsax.task_square),
+                title: Text("Task"),
+              ),
+              SalomonBottomBarItem(
+                icon: Icon(Iconsax.note_1),
+                title: Text("Note"),
+              ),
+              SalomonBottomBarItem(
+                icon: Icon(Iconsax.setting_2),
+                title: Text("Setting"),
+              ),
+            ],
+          )),
     );
   }
 }

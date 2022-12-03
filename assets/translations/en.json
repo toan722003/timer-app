@@ -1,0 +1,37 @@
+{
+  "clock": {
+    "monday": "Mo",
+    "tuesday": "Tu",
+    "wednesday": "We",
+    "thursday": "Th",
+    "friday": "Fr",
+    "saturday": "Sa",
+    "sunday": "Su",
+    "morning": "AM",
+    "afternoon": "PM",
+    "vibrate": "Vibrate",
+    "alarm_appointment": "Alarm Appointment",
+    "ring": "Ring",
+    "back": "Back",
+    "apply": "Apply",
+    "remove": "Remove",
+    "non_have_clock": "You have no clock today!",
+    "add_new_clock": "Click the  (+)  icon to add a new clock"
+  },
+  "task": {
+    "notification": "Wow! Your daily goals is almost done",
+    "completed": "Completed",
+    "today_tasks": "Today Tasks",
+    "seeAll": "See All",
+    "title": "Title",
+    "date": "Date",
+    "star_time": "Start Time",
+    "category": "Category",
+    "long_break": "Long Break",
+    "short_break": "Short Break",
+    "create_new_task": "Create New Task",
+    "congratulations": "Congratulations",
+    "content_congratulations": "You have successfully completed tasks!",
+    "home" : "Home"
+  }
+}

@@ -8,6 +8,7 @@ import 'package:timer_app/widget/task/task_home.dart';
 class HomeMenuController extends GetxController {
 
   late TabController tabController;
+  RxInt currentIndex = 0.obs;
 
   @override
   void onInit() {
@@ -37,5 +38,6 @@ class HomeMenuController extends GetxController {
         break;
     }
     tabController.index = index;
+    currentIndex.value = index;
   }
 }

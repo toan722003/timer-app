@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:timer_app/controller/task_controller.dart';
 import 'package:timer_app/theme/color.dart';
 import 'package:timer_app/widget/task/all_task.dart';
@@ -24,7 +24,7 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
     return Scaffold(
       backgroundColor: UIColor.white,
       body: Container(
-        margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
+        margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
         child: Column(
           children: [
             Container(
@@ -44,7 +44,20 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
               ),
               child: Row(
                 children: [
-                  Expanded(child: Container()),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: CircularPercentIndicator(
+                        radius: 55.0,
+                        lineWidth: 10.0,
+                        percent: 0.60,
+                        center: Text("60%", style: UITextStyle.percent_black_25_bold),
+                        backgroundColor: UIColor.countDown_whiteAccent,
+                        progressColor: UIColor.newTask_red,
+                        // arcBackgroundColor: UIColor.accentBlue,
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

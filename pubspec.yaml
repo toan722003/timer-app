@@ -52,6 +52,12 @@ dependencies:
   calendar_view: ^1.0.0
   # Auto complete
   flutter_typeahead: ^4.1.1
+  # Count percent complete task
+  percent_indicator: ^4.2.2
+  # bottom navigator bar
+  salomon_bottom_bar: ^3.3.1
+
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -82,4 +88,5 @@ flutter:
     - resources/fonts/OpenSans_Condensed/
     - resources/fonts/OpenSans_SemiCondensed/
     - resources/images/
+    - assets/translations/
 

@@ -1,0 +1,37 @@
+{
+  "clock": {
+    "monday": "T2",
+    "tuesday": "T3",
+    "wednesday": "T4",
+    "thursday": "T5",
+    "friday": "T6",
+    "saturday": "T7",
+    "sunday": "CN",
+    "morning": "SA",
+    "afternoon": "CH",
+    "vibrate": "Rung",
+    "alarm_appointment": "Hẹn Báo Thức",
+    "ring": "Nhạc Chuông",
+    "back": "Quay lại",
+    "apply": "Chọn",
+    "remove": "Xoá",
+    "non_have_clock": "Bạn không có báo thức ngày hôm nay!",
+    "add_new_clock": "Nhấp vào biểu tượng (+) để thêm báo thức mới"
+  },
+  "task": {
+    "notification": "Mục tiêu hàng ngày đã gần hoàn thành",
+    "completed": "hoàn thành",
+    "today_tasks": "Công Việc Hôm Nay",
+    "seeAll": "Tất Cả",
+    "title": "Tiêu Đề",
+    "date": "Ngày",
+    "star_time": "Thời Gian",
+    "category": "Công Việc",
+    "long_break": "Thời Gian Dài",
+    "short_break": "Thời Gian Ngắn",
+    "create_new_task": "Tạo",
+    "congratulations": "Chúc Mừng",
+    "content_congratulations": "Bạn đã hoàn thành xuất sắc nhiệm vụ!",
+    "home" : "Quay lại"
+  }
+}
