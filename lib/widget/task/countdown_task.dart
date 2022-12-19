@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/count_down_task%20_controller.dart';
 import 'package:timer_app/theme/gradient.dart';
+import 'package:timer_app/theme/locale_keys.g.dart';
 
 import '../../theme/color.dart';
 import '../../theme/textStyle.dart';
@@ -28,10 +29,6 @@ class CountDownTask extends StatelessWidget {
           onTap: () {
             Get.back();
           },
-        ),
-        title: Text(
-          "Reading Book",
-          style: UITextStyle.newTask_black_24_bold,
         ),
       ),
       body: Container(

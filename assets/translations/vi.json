@@ -33,5 +33,15 @@
     "congratulations": "Chúc Mừng",
     "content_congratulations": "Bạn đã hoàn thành xuất sắc nhiệm vụ!",
     "home" : "Quay lại"
+  },
+  "tab_bar": {
+    "clock": "Báo Thức",
+    "task": "Nhiệm Vụ",
+    "note": "Công việc",
+    "setting": "Cài Đặt"
+  },
+  "note": {
+    "non_note": "Bạn không có nhiệm vụ hôm nay!",
+    "text":"Nhấn vào biểu tượng (+) để thêm nhiệm vụ"
   }
 }

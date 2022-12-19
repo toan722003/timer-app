@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:timer_app/controller/home_menu_controller.dart';
+import 'package:timer_app/extension/translate.dart';
+import 'package:timer_app/theme/locale_keys.g.dart';
 
 import '../theme/color.dart';
 
@@ -37,20 +39,20 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> with TickerProviderStat
             unselectedItemColor: UIColor.countDown_whiteAccent,
             items: [
               SalomonBottomBarItem(
-                icon: Icon(Iconsax.clock_1),
-                title: Text("Clock"),
+                icon: const Icon(Iconsax.clock_1),
+                title: Text(LocaleKeys.tab_bar_clock.trans()),
               ),
               SalomonBottomBarItem(
-                icon: Icon(Iconsax.task_square),
-                title: Text("Task"),
+                icon: const Icon(Iconsax.task_square),
+                title: Text(LocaleKeys.tab_bar_task.trans()),
               ),
               SalomonBottomBarItem(
-                icon: Icon(Iconsax.note_1),
-                title: Text("Note"),
+                icon: const Icon(Iconsax.note_1),
+                title: Text(LocaleKeys.tab_bar_note.trans()),
               ),
               SalomonBottomBarItem(
-                icon: Icon(Iconsax.setting_2),
-                title: Text("Setting"),
+                icon: const Icon(Iconsax.setting_2),
+                title: Text(LocaleKeys.tab_bar_setting.trans()),
               ),
             ],
           )),

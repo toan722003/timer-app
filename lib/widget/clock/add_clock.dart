@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/add_clock_controller.dart';
+import 'package:timer_app/extension/translate.dart';
 import 'package:timer_app/theme/color.dart';
 import 'package:timer_app/theme/gradient.dart';
+import 'package:timer_app/theme/locale_keys.g.dart';
 import 'package:timer_app/theme/textStyle.dart';
 import 'package:timer_app/widget/clock/futureAddClock.dart';
 import 'package:timer_app/widget/clock/table_calender.dart';
@@ -149,7 +151,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FutureAddClock(
-                  nameFuture: "Rung",
+                  nameFuture: LocaleKeys.clock_vibrate.trans(),
                   iconData: Icons.vibration_outlined,
                   color: UIColor.task_greenAccent,
                 ),
@@ -197,7 +199,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   FutureAddClock(
-                    nameFuture: "Hen bao thuc",
+                    nameFuture: LocaleKeys.clock_alarm_appointment.trans(),
                     iconData: Icons.calendar_month_rounded,
                     color: UIColor.task_yellowDark,
                   ),
@@ -227,7 +229,7 @@ class _AddClockWidgetState extends State<AddClockWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   FutureAddClock(
-                    nameFuture: "Nhac Chuong",
+                    nameFuture: LocaleKeys.clock_ring.trans(),
                     iconData: Icons.ring_volume_rounded,
                     color: UIColor.task_redWhite,
                   ),

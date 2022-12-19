@@ -32,6 +32,16 @@
     "create_new_task": "Create New Task",
     "congratulations": "Congratulations",
     "content_congratulations": "You have successfully completed tasks!",
-    "home" : "Home"
+    "home": "Home"
+  },
+  "tab_bar": {
+    "clock": "Clock",
+    "task": "Task",
+    "note": "Note",
+    "setting": "Setting"
+  },
+  "note": {
+    "non_note": "You have no task today!",
+    "text":"Click the  (+)  icon to add a new task"
   }
 }

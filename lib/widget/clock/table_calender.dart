@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:timer_app/extension/translate.dart';
+import 'package:timer_app/theme/locale_keys.g.dart';
 import 'package:timer_app/theme/textStyle.dart';
 
 import '../../controller/add_clock_controller.dart';
@@ -93,7 +95,7 @@ class _TableCalenderState extends State<TableCalender> {
                     Get.back();
                   },
                   child: Text(
-                    "Back",
+                    LocaleKeys.clock_back.trans(),
                     style: UITextStyle.button_select_black_16_bold,
                   ),
                 ),
@@ -109,7 +111,7 @@ class _TableCalenderState extends State<TableCalender> {
                     Get.back();
                   },
                   child: Text(
-                    "Apply",
+                    LocaleKeys.clock_apply.trans(),
                     style: UITextStyle.note_white_16_bold,
                   ),
                 ),

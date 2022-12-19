@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:timer_app/controller/task_controller.dart';
 import 'package:timer_app/widget/task/countdown_task.dart';
 import 'package:timer_app/widget/task/itemTaskInListView.dart';
 
@@ -9,7 +10,8 @@ import '../../theme/color.dart';
 import '../../theme/textStyle.dart';
 
 class AllTask extends StatelessWidget {
-   const AllTask({Key? key}) : super(key: key);
+   AllTask({Key? key}) : super(key: key);
+   TaskController taskController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +40,16 @@ class AllTask extends StatelessWidget {
         child: ListView.builder(
           itemBuilder: (context, index) {
             return ItemTaskInListView(
-              title: "Learn Programing",
+              title: taskController.mapTitle[index],
               time: 50,
-              image: "resources/images/learn_programming.png",
+              image: taskController.mapImage[index],
               color: UIColor.black.withOpacity(0.25),
               onTap: (){
                 Get.toNamed("/countdown");
               },
             );
           },
-          itemCount: 15,
+          itemCount: taskController.mapTitle.length,
         ),
       ),
     );

@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:timer_app/controller/task_controller.dart';
+import 'package:timer_app/extension/translate.dart';
 import 'package:timer_app/theme/color.dart';
+import 'package:timer_app/theme/locale_keys.g.dart';
 import 'package:timer_app/widget/task/all_task.dart';
 import 'package:timer_app/widget/task/itemTaskInListView.dart';
 
@@ -64,7 +66,7 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Wow! Your daily goals is almost done",
+                          LocaleKeys.task_notification.trans(),
                           style: UITextStyle.textViewPeecent_black_18_bold,
                         ),
                         Text(
@@ -83,7 +85,7 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
               children: [
                 Expanded(
                     child: Text(
-                  "Today Tasks",
+                  LocaleKeys.task_today_tasks.trans(),
                   style: UITextStyle.todayTask_black_20_bold,
                 )),
                 TextButton(
@@ -91,7 +93,7 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
                     Get.to(() => AllTask());
                   },
                   child: Text(
-                    "See All",
+                    LocaleKeys.task_seeAll.trans(),
                     style: UITextStyle.text_notifical_red_20_bold
                         .copyWith(color: UIColor.newTask_redDark),
                   ),
@@ -109,8 +111,8 @@ class _TaskHomeWidgetState extends State<TaskHomeWidget> {
                 itemCount: 6,
                 itemBuilder: (context, index) {
                   return ItemTaskInListView(
-                    image: "resources/images/readingbook.png",
-                    title: "Read Book",
+                    image: taskController.mapImage[index],
+                    title: taskController.mapTitle[index],
                     time: 50,
                     onTap: () {
                       Get.toNamed("/countdown");

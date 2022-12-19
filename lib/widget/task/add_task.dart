@@ -48,193 +48,218 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
           height: Get.height,
           padding: EdgeInsets.only(top: 20.h),
           margin: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              nameOfLabel("Title"),
-              SizedBox(
-                height: 50.h,
-                child: TextFormField(
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      fillColor: UIColor.task_redWhite,
-                      hintText: "Task title",
-                      hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
-                      contentPadding: EdgeInsets.only(left: 20.w),
-                      enabledBorder: onEnableBorder(),
-                      focusedBorder: onFocusBorder(),
-                    )),
-              ),
-              SizedBox(height: 10.h),
-              Row(
-                children: [
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          nameOfLabel("Date"),
-                          SizedBox(
-                            height: 50.h,
-                            child: TextFormField(
-                              onTap: () {
-                                showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10)),
-                                    ),
-                                    context: context,
-                                    backgroundColor: UIColor.white,
-                                    builder: (context) {
-                                      return SizedBox(height: 500.h, child: TableCalender());
-                                    });
-                              },
-                              maxLines: 1,
-                              decoration: InputDecoration(
-                                hintText: "Date",
-                                hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
-                                contentPadding: EdgeInsets.only(left: 20.w),
-                                enabledBorder: onEnableBorder(),
-                                focusedBorder: onFocusBorder(),
-                                suffixIcon: suffixIconTFF("resources/images/date_in_new_task.png"),
+          child: Form(
+            key: addTaskController.globalKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                nameOfLabel("Title"),
+                SizedBox(
+                  height: 50.h,
+                  child: TextFormField(
+                      controller: addTaskController.titleController,
+                      maxLines: 1,
+                      validator: (String? text) {
+                        if (addTaskController.checkNull(text!)) {
+                          return "Vui lòng nhập tiêu đề";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        fillColor: UIColor.task_redWhite,
+                        hintText: "Task title",
+                        hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
+                        contentPadding: EdgeInsets.only(left: 20.w),
+                        enabledBorder: onEnableBorder(),
+                        focusedBorder: onFocusBorder(),
+                        errorStyle: UITextStyle.note_white_12_normal.copyWith(color: UIColor.red),
+                        errorBorder: onEnableBorder(),
+                        focusedErrorBorder: onFocusBorder()
+                      )),
+                ),
+                SizedBox(height: 10.h),
+                Row(
+                  children: [
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            nameOfLabel("Date"),
+                            SizedBox(
+                              height: 50.h,
+                              child: TextFormField(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10)),
+                                      ),
+                                      context: context,
+                                      backgroundColor: UIColor.white,
+                                      builder: (context) {
+                                        return SizedBox(height: 500.h, child: TableCalender());
+                                      });
+                                },
+                                maxLines: 1,
+                                decoration: InputDecoration(
+                                  hintText: "Date",
+                                  hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
+                                  contentPadding: EdgeInsets.only(left: 20.w),
+                                  enabledBorder: onEnableBorder(),
+                                  focusedBorder: onFocusBorder(),
+                                  suffixIcon:
+                                      suffixIconTFF("resources/images/date_in_new_task.png"),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      )),
-                  SizedBox(width: 10.w),
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          nameOfLabel("Start Time"),
-                          SizedBox(
-                            height: 50.h,
-                            child: TextFormField(
-                              maxLines: 1,
-                              decoration: InputDecoration(
-                                hintText: "Start Time",
-                                hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
-                                contentPadding: EdgeInsets.only(left: 20.w),
-                                enabledBorder: onEnableBorder(),
-                                focusedBorder: onFocusBorder(),
-                                suffixIcon: suffixIconTFF("resources/images/clock_in_new_task.png"),
+                          ],
+                        )),
+                    SizedBox(width: 10.w),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            nameOfLabel("Start Time"),
+                            SizedBox(
+                              height: 50.h,
+                              child: TextFormField(
+                                controller: addTaskController.startTimeController,
+                                validator: (String? text) {
+                                  if (addTaskController.checkValidator(text!))
+                                    return "Vui lòng nhập đúng định dạng!";
+                                  return null;
+                                },
+                                maxLines: 1,
+                                decoration: InputDecoration(
+                                  errorStyle: UITextStyle.note_white_12_normal.copyWith(color: UIColor.red),
+                                  errorBorder: onEnableBorder(),
+                                  focusedErrorBorder: onFocusBorder(),
+                                  hintText: "Start Time",
+                                  hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
+                                  contentPadding: EdgeInsets.only(left: 20.w),
+                                  enabledBorder: onEnableBorder(),
+                                  focusedBorder: onFocusBorder(),
+                                  suffixIcon:
+                                      suffixIconTFF("resources/images/clock_in_new_task.png"),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              SizedBox(height: 10.h),
-              nameOfLabel("Category"),
-              SizedBox(
-                height: 50.h,
-                child: TypeAheadField(
-                  animationStart: 0,
-                  animationDuration: const Duration(seconds: 1),
-                  textFieldConfiguration: TextFieldConfiguration(
-                    decoration: InputDecoration(
-                      hintText: "Category",
-                      hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
-                      contentPadding: EdgeInsets.only(left: 20.w),
-                      enabledBorder: onEnableBorder(),
-                      focusedBorder: onFocusBorder(),
-                      suffixIcon: const Icon(
-                        Icons.arrow_drop_down_circle_rounded,
-                        color: UIColor.accentGreen,
-                        size: 30,
+                          ],
+                        )),
+                  ],
+                ),
+                SizedBox(height: 10.h),
+                nameOfLabel("Category"),
+                SizedBox(
+                  height: 50.h,
+                  child: TypeAheadField(
+                    animationStart: 0,
+                    animationDuration: const Duration(seconds: 1),
+                    textFieldConfiguration: TextFieldConfiguration(
+                      controller: addTaskController.categoryController,
+                      decoration: InputDecoration(
+                        hintText: "Category",
+                        hintStyle: UITextStyle.hide_text_accentWhite_12_normal,
+                        contentPadding: EdgeInsets.only(left: 20.w),
+                        enabledBorder: onEnableBorder(),
+                        focusedBorder: onFocusBorder(),
+                        suffixIcon: const Icon(
+                          Icons.arrow_drop_down_circle_rounded,
+                          color: UIColor.accentGreen,
+                          size: 30,
+                        ),
                       ),
                     ),
-                  ),
-                  suggestionsBoxDecoration: const SuggestionsBoxDecoration(
-                    color: UIColor.white,
-                    elevation: 0,
-                  ),
-                  suggestionsCallback: (pattern) {
-                    List<String> matches = <String>[];
-                    matches.addAll(addTaskController.suggestions);
-                    matches.retainWhere((s) {
-                      return s.toLowerCase().contains(pattern.toLowerCase());
-                    });
-                    return matches;
-                  },
-                  itemBuilder: (context, some) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        border: Border.all(color: UIColor.black),
-                      ),
-                      margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-                      padding: EdgeInsets.only(left: 20.w, top: 10.h, bottom: 10.h),
-                      child: Text(some.toString()),
-                    );
-                  },
-                  onSuggestionSelected: (suggestion) {
-                    print(suggestion);
-                  },
-                ),
-              ),
-              SizedBox(height: 10.h),
-              nameOfLabel("Long Break"),
-              Obx(() {
-                return SizedBox(
-                  height: 20.h,
-                  child: Slider(
-                      activeColor: UIColor.accentGreen,
-                      inactiveColor: UIColor.countDown_whiteAccent,
-                      divisions: 10,
-                      min: 0,
-                      max: 180,
-                      label: "${addTaskController.countLongBreak.value.toInt()}",
-                      thumbColor: UIColor.accentRed,
-                      value: addTaskController.countLongBreak.value,
-                      onChanged: (value) {
-                        addTaskController.countLongBreak.value = value;
-                      }),
-                );
-              }),
-              SizedBox(height: 10.h),
-              nameOfLabel("Short Break"),
-              Obx(() {
-                return Container(
-                  width: 400.w,
-                  height: 20.h,
-                  child: Slider(
-                      activeColor: UIColor.accentGreen,
-                      inactiveColor: UIColor.countDown_whiteAccent,
-                      divisions: 5,
-                      min: 0,
-                      max: 30,
-                      label: "${addTaskController.countShortBreak.value.toInt()}",
-                      thumbColor: UIColor.accentRed,
-                      value: addTaskController.countShortBreak.value,
-                      onChanged: (value) {
-                        addTaskController.countShortBreak.value = value;
-                      }),
-                );
-              }),
-              SizedBox(height: 80.h),
-              Container(
-                alignment: Alignment.center,
-                height: 50.h,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  gradient: MyGradient.linerGradient3,
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Text(
-                    "Create New Task",
-                    style: UITextStyle.button_newTask_white_20_bold,
+                    suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                      color: UIColor.white,
+                      elevation: 0,
+                    ),
+                    suggestionsCallback: (pattern) {
+                      List<String> matches = <String>[];
+                      matches.addAll(addTaskController.suggestions);
+                      matches.retainWhere((s) {
+                        return s.toLowerCase().contains(pattern.toLowerCase());
+                      });
+                      return matches;
+                    },
+                    itemBuilder: (context, some) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          border: Border.all(color: UIColor.black),
+                        ),
+                        margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                        padding: EdgeInsets.only(left: 20.w, top: 10.h, bottom: 10.h),
+                        child: Text(some.toString()),
+                      );
+                    },
+                    onSuggestionSelected: (suggestion) {
+                      print(suggestion);
+                    },
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 10.h),
+                nameOfLabel("Long Break"),
+                Obx(() {
+                  return SizedBox(
+                    height: 20.h,
+                    child: Slider(
+                        activeColor: UIColor.accentGreen,
+                        inactiveColor: UIColor.countDown_whiteAccent,
+                        divisions: 10,
+                        min: 0,
+                        max: 180,
+                        label: "${addTaskController.countLongBreak.value.toInt()}",
+                        thumbColor: UIColor.accentRed,
+                        value: addTaskController.countLongBreak.value,
+                        onChanged: (value) {
+                          addTaskController.countLongBreak.value = value;
+                        }),
+                  );
+                }),
+                SizedBox(height: 10.h),
+                nameOfLabel("Short Break"),
+                Obx(() {
+                  return Container(
+                    width: 400.w,
+                    height: 20.h,
+                    child: Slider(
+                        activeColor: UIColor.accentGreen,
+                        inactiveColor: UIColor.countDown_whiteAccent,
+                        divisions: 5,
+                        min: 0,
+                        max: 30,
+                        label: "${addTaskController.countShortBreak.value.toInt()}",
+                        thumbColor: UIColor.accentRed,
+                        value: addTaskController.countShortBreak.value,
+                        onChanged: (value) {
+                          addTaskController.countShortBreak.value = value;
+                        }),
+                  );
+                }),
+                SizedBox(height: 80.h),
+                Container(
+                  alignment: Alignment.center,
+                  height: 50.h,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    gradient: MyGradient.linerGradient3,
+                  ),
+                  child: InkWell(
+                    onTap: addTaskController.onCreateTask,
+                    child: Text(
+                      "Create New Task",
+                      style: UITextStyle.button_newTask_white_20_bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -32,7 +32,7 @@ class FutureAddClock extends StatelessWidget {
             child: Icon(iconData, color: UIColor.white),
           ),
           SizedBox(
-            width: 25.w,
+            width: 20.w,
           ),
           Text(
             nameFuture,

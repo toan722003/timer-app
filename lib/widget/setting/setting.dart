@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/setting_controller.dart';
+import 'package:timer_app/main.dart';
 
 import '../../theme/color.dart';
 import '../../theme/gradient.dart';
@@ -34,25 +36,6 @@ class _SettingWidgetState extends State<SettingWidget> {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 50.h),
         child: Column(
           children: [
-            // InkWell(
-            //   onTap: () {
-            //     print("Language");
-            //   },
-            //   child: Container(
-            //     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-            //     decoration: BoxDecoration(
-            //       border: Border.all(color: UIColor.black),
-            //       borderRadius: const BorderRadius.all(Radius.circular(10)),
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: const [
-            //         Icon(Icons.language, color: UIColor.black),
-            //         Text("Language"),
-            //       ],
-            //     ),
-            //   ),
-            // ),
             SizedBox(height: 30.h),
             Container(
               height: 50.h,
@@ -70,6 +53,9 @@ class _SettingWidgetState extends State<SettingWidget> {
                 onChanged: (value) {
                   setState(() {
                     settingController.language = value!;
+                    value == "Viet Nam"
+                        ? context.setLocale(Locale('vi'))
+                        : context.setLocale(Locale('en'));
                   });
                 },
                 value: settingController.language,
@@ -78,25 +64,6 @@ class _SettingWidgetState extends State<SettingWidget> {
               ),
             ),
             SizedBox(height: 30.h),
-            // InkWell(
-            //   onTap: () {
-            //     print("Log out");
-            //   },
-            //   child: Container(
-            //     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-            //     decoration: BoxDecoration(
-            //       border: Border.all(color: UIColor.black),
-            //       borderRadius: const BorderRadius.all(Radius.circular(10)),
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: const [
-            //         Icon(Icons.logout, color: UIColor.black),
-            //         Text("Log out"),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -106,12 +73,14 @@ class _SettingWidgetState extends State<SettingWidget> {
   DropdownMenuItem<String> dropdownMenuItem(String nameLanguage) {
     return DropdownMenuItem(
       value: nameLanguage,
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(nameLanguage),
-          ],
+      child: InkWell(
+        child: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(nameLanguage),
+            ],
+          ),
         ),
       ),
     );

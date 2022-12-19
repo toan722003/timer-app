@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:timer_app/controller/clock_controller.dart';
+import 'package:timer_app/extension/translate.dart';
 import 'package:timer_app/theme/color.dart';
+import 'package:timer_app/theme/locale_keys.g.dart';
 import 'package:timer_app/theme/textStyle.dart';
 
 class ClockHomeWidget extends StatefulWidget {
@@ -26,8 +27,9 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
         child: clockController.list.isEmpty
             ? nonHaveItem()
             : ListView.builder(
-                itemCount: clockController.list.length,
+                itemCount: clockController.map.length,
                 itemBuilder: (context, index) {
+                  String time = clockController.map[index]!;
                   return Container(
                     height: 110.h,
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -49,9 +51,20 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                           children: [
                             Expanded(
                               flex: 3,
-                              child: Text(
-                                "4: 35 CH",
-                                style: UITextStyle.item_clock_black_40_bold,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    time,
+                                    style: UITextStyle.item_clock_black_40_bold,
+                                  ),
+                                  SizedBox(width: 8.w),
+                                  Text(
+                                    int.parse(time.substring(0,time.indexOf(':'))) > 12
+                                        ? LocaleKeys.clock_afternoon.trans()
+                                        : LocaleKeys.clock_morning.trans(),
+                                    style: UITextStyle.item_clock_black_40_bold,
+                                  ),
+                                ],
                               ),
                             ),
                             Container(
@@ -67,7 +80,10 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                                 onTap: () {
                                   print("next screen is edit clock");
                                 },
-                                child: const Icon(Icons.navigate_next_outlined,color: UIColor.white,),
+                                child: const Icon(
+                                  Icons.navigate_next_outlined,
+                                  color: UIColor.white,
+                                ),
                               ),
                             ),
                           ],
@@ -75,11 +91,11 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
                         Row(
                           children: [
                             Expanded(
-                              flex: 3,
+                                flex: 3,
                                 child: Text(
-                              "T2,T3,T4,T5",
-                              style: UITextStyle.item_clock_black_15_bold,
-                            )),
+                                  "${LocaleKeys.clock_monday.trans()},${LocaleKeys.clock_tuesday.trans()},${LocaleKeys.clock_wednesday.tr.trans()}",
+                                  style: UITextStyle.item_clock_black_15_bold,
+                                )),
                             Switch(
                               value: clockController.isSwitch,
                               onChanged: (value) {
@@ -135,7 +151,7 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
           alignment: Alignment.center,
           height: 30.h,
           child: Text(
-            "You have no clock today!",
+            LocaleKeys.clock_non_have_clock.trans(),
             style: UITextStyle.text_notifical_red_20_bold,
           ),
         ),
@@ -144,7 +160,7 @@ class _ClockHomeWidgetState extends State<ClockHomeWidget> {
           alignment: Alignment.center,
           height: 20,
           child: Text(
-            "Click the  (+)  icon to add a new clock",
+            LocaleKeys.clock_add_new_clock.trans(),
             style: UITextStyle.taskbar_item_black_12_normal,
           ),
         ),

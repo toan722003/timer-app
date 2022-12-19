@@ -36,12 +36,14 @@ class ItemTaskInListView extends StatelessWidget {
         children: [
           Container(
             width: 70.w,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
             ),
-            child: Image(
-              image: AssetImage(image),
-            ),
+            // child: Image(
+            //   image: AssetImage(image),
+            //   fit: BoxFit.cover,
+            // ),
           ),
           SizedBox(
             width: 20.w,
@@ -73,7 +75,7 @@ class ItemTaskInListView extends StatelessWidget {
             ),
             child: InkWell(
               onTap: onTap,
-              child: const Icon(Icons.play_arrow,color: UIColor.white),
+              child: const Icon(Icons.play_arrow, color: UIColor.white),
             ),
           ),
         ],

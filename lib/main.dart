@@ -31,10 +31,10 @@ void main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: [Locale('en', 'US'), Locale('vi', 'VN')],
+      supportedLocales: const [Locale('en'), Locale('vi')],
       path: 'assets/translations', // <-- change the path of the translation files
-      fallbackLocale: Locale('en', 'US'),
-      child: MyApp(),
+      fallbackLocale: const Locale('en', 'US'),
+      child: const MyApp(),
     ),
   );
 }
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             backgroundColor: UIColor.white,
           ),
-          home: SplashScreen(),
+          home: const SplashScreen(),
           getPages: [
             GetPage(name: "/clockhome", page: () => ClockHomeWidget(), binding: ClockBinding()),
             GetPage(name: "/taskhome", page: () => TaskHomeWidget(), binding: TaskBinding()),
